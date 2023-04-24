@@ -1,1 +1,1 @@
-# PerfumeShop_JavaFX
+# PerfumeShop-MVC
