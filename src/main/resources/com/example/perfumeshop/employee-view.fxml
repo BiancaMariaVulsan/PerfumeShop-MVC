@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="571.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.perfumeshop.controller.EmployeeController">
+    <children>
+        <Button fx:id="addButton" layoutX="694.0" layoutY="232.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Add" />
+        <TableView fx:id="productTableView" layoutX="149.0" layoutY="126.0" prefHeight="430.0" prefWidth="536.0">
+            <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="158.0" text="Name" />
+                <TableColumn fx:id="brandColumn" prefWidth="199.19998168945312" text="Brand" />
+                <TableColumn fx:id="availabilityColumn" minWidth="9.79998779296875" prefWidth="95.39999389648438" text="Availability" />
+                <TableColumn fx:id="priceColumn" prefWidth="83.79998779296875" text="Price" />
+            </columns>
+        </TableView>
+        <Button fx:id="filterButton" layoutX="694.0" layoutY="82.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="Filter" />
+        <Label layoutX="381.0" layoutY="25.0" text="Products" />
+        <Label layoutX="187.0" layoutY="91.0" text="Filtering Criteria" />
+        <TextField fx:id="brandFilter" layoutX="312.0" layoutY="86.0" prefHeight="26.0" prefWidth="186.0" />
+        <TextField fx:id="priceFilter" layoutX="606.0" layoutY="87.0" prefHeight="26.0" prefWidth="78.0" />
+      <Button fx:id="deleteButton" layoutX="694.0" layoutY="170.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Delete" />
+      <Button fx:id="editButton" layoutX="694.0" layoutY="292.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Edit" />
+      <CheckBox fx:id="availabilityFilter" layoutX="544.0" layoutY="91.0" mnemonicParsing="false" />
+    </children>
+</AnchorPane>
