@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.List;
@@ -54,6 +55,8 @@ public class ManagerController implements Initializable {
     private Button saveXML;
     @FXML
     private Button saveTXT;
+    @FXML
+    private Button brandAnalysisButton;
 
     @FXML
     private ChoiceBox<String> shopChoice;
@@ -92,6 +95,21 @@ public class ManagerController implements Initializable {
         saveTXT.setOnAction(e -> {
             TxtPersistence saveSpTxtCommand = new TxtPersistence(productItems, "allProducts.txt");
             saveSpTxtCommand.save();
+        });
+        brandAnalysisButton.setOnAction(e -> {
+            Callback<Class<?>, Object> controllerFactory = type -> {
+                if (type == PieChartController.class) {
+                    return new PieChartController(productItems);
+                } else {
+                    try {
+                        return type.newInstance();
+                    } catch (Exception exc) {
+                        System.err.println("Could not load register controller " + type.getName());
+                        throw new RuntimeException(exc);
+                    }
+                }
+            };
+            Controller.loadFXML("/com/example/perfumeshop/brand-pie-chart.fxml", controllerFactory);
         });
     }
 
