@@ -1,0 +1,36 @@
+Name: Born in Roma
+Price: 450.0
+Brand: Valentino
+
+Name: Light Blue
+Price: 420.0
+Brand: Dolce Gabana
+
+Name: La Femme
+Price: 500.0
+Brand: Prada
+
+Name: Candy
+Price: 449.0
+Brand: Prada
+
+Name: Cristal Noir
+Price: 420.2
+Brand: Versace
+
+Name: Paradoxe
+Price: 443.9
+Brand: Prada
+
+Name: Jadore
+Price: 370.0
+Brand: Dior
+
+Name: szdv
+Price: 300.0
+Brand: zdfv
+
+Name: xzv
+Price: 123.0
+Brand: xzfv
+

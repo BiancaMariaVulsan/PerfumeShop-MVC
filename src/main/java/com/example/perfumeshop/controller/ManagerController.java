@@ -1,6 +1,13 @@
 package com.example.perfumeshop.controller;
 
 import com.example.perfumeshop.model.Product;
+import com.example.perfumeshop.model.Shop;
+import com.example.perfumeshop.model.ShopProduct;
+import com.example.perfumeshop.model.persistence.ShopPersistence;
+import com.example.perfumeshop.model.persistence.files.CsvPersistence;
+import com.example.perfumeshop.model.persistence.files.JsonPersistence;
+import com.example.perfumeshop.model.persistence.files.TxtPersistence;
+import com.example.perfumeshop.model.persistence.files.XmlPersistence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class ManagerController implements Initializable {
@@ -39,11 +47,24 @@ public class ManagerController implements Initializable {
     @FXML
     private Button sortPriceButton;
 
+    @FXML
+    private Button saveCSV;
+    @FXML
+    private Button saveJSON;
+    @FXML
+    private Button saveXML;
+    @FXML
+    private Button saveTXT;
+
+    @FXML
+    private ChoiceBox<String> shopChoice;
+
     private ProductController productPresenter = new ProductController();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn);
+        initShopCheckBox(shopChoice);
 
         filterButton.setOnAction(e -> {
             var filteredItems = productPresenter.filterProducts(nameFilter, brandFilter, availabilityFilter, priceFilter);
@@ -57,5 +78,30 @@ public class ManagerController implements Initializable {
             var sortedItems = productPresenter.sortByPrice();
             Controller.populateTableProductsFiltered(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, sortedItems);
         });
+        saveCSV.setOnAction(e -> {
+            CsvPersistence saveSpCSVCommand = new CsvPersistence(productItems, "allProducts.csv");
+            saveSpCSVCommand.save();
+        });
+        saveJSON.setOnAction(e -> {
+            JsonPersistence saveSpJsonCommand = new JsonPersistence(productItems, "allProducts.json");
+            saveSpJsonCommand.save();
+        });
+        saveXML.setOnAction(e -> {
+            XmlPersistence saveSpXmlCommand = new XmlPersistence(productItems, "allProducts.xml");
+            saveSpXmlCommand.save();
+        });
+        saveTXT.setOnAction(e -> {
+            TxtPersistence saveSpTxtCommand = new TxtPersistence(productItems, "allProducts.txt");
+            saveSpTxtCommand.save();
+        });
+    }
+
+    public void initShopCheckBox(ChoiceBox<String> shopChoiceBox) {
+        ShopPersistence shopPersistence = new ShopPersistence();
+        List<Shop> shops = shopPersistence.findAll();
+        for(Shop shop: shops) {
+            shopChoiceBox.getItems().add(shop.getName());
+        }
+        shopChoiceBox.setValue(shops.get(0).getName()); // suppose there is at least one shop
     }
 }

@@ -16,5 +16,7 @@
         <Label layoutX="327.0" layoutY="28.0" prefHeight="24.0" prefWidth="45.0" text="Persons" />
         <Button fx:id="deleteButton" layoutX="651.0" layoutY="147.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Delete" />
       <Button fx:id="editButton" layoutX="651.0" layoutY="298.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Edit" />
+        <Button fx:id="filterButton" layoutX="651.0" layoutY="52.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Filter" />
+        <ChoiceBox fx:id="roleChoice" layoutX="484.0" layoutY="61.0" prefHeight="26.0" prefWidth="135.0" />
     </children>
 </AnchorPane>

@@ -22,5 +22,10 @@
       <Button fx:id="sortNameButton" layoutX="27.0" layoutY="170.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="99.0" text="Sort by name" />
       <Button fx:id="sortPriceButton" layoutX="27.0" layoutY="232.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="99.0" text="Sort by price" />
       <CheckBox fx:id="availabilityFilter" layoutX="508.0" layoutY="87.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="Available" />
+        <Button fx:id="saveCSV" layoutX="694.0" layoutY="178.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="99.0" text="Save csv" />
+        <Button fx:id="saveJSON" layoutX="697.0" layoutY="242.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="99.0" text="Save json" />
+        <Button fx:id="saveXML" layoutX="697.0" layoutY="309.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="99.0" text="Save xml" />
+        <Button fx:id="saveTXT" layoutX="697.0" layoutY="374.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="99.0" text="Save txt" />
+        <ChoiceBox fx:id="shopChoice" layoutX="11.0" layoutY="87.0" prefHeight="26.0" prefWidth="131.0" />
     </children>
 </AnchorPane>
