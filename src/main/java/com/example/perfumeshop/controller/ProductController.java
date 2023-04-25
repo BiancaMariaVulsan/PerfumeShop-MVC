@@ -1,8 +1,10 @@
 package com.example.perfumeshop.controller;
 
 import com.example.perfumeshop.model.Product;
+import com.example.perfumeshop.model.Shop;
 import com.example.perfumeshop.model.ShopProduct;
 import com.example.perfumeshop.model.persistence.ProductPersistence;
+import com.example.perfumeshop.model.persistence.ShopPersistence;
 import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -38,7 +40,7 @@ public class ProductController {
         return false;
     }
 
-    public List<Product> filterProducts(TextField nameFilter, TextField brandFilter, CheckBox availabilityFilter, TextField priceFilter) {
+    public List<Product> filterProducts(TextField nameFilter, TextField brandFilter, CheckBox availabilityFilter, TextField priceFilter, String shopName) {
         String name = nameFilter.getText();
         String brand = brandFilter.getText();
         boolean availability = availabilityFilter.isSelected();
@@ -63,7 +65,14 @@ public class ProductController {
                 .filter(it -> finalBrand.equals("") || it.getBrand().toLowerCase().contains(finalBrand.toLowerCase()))
                 .filter(it -> !availability || isAvailableInTheChain(it.getId()))
                 .filter(it -> finalPrice == -1 || it.getPrice() <= finalPrice)
+                .filter(it -> isProductInShop(it, shopName))
                 .collect(Collectors.toList());
+    }
+
+    private boolean isProductInShop(Product product, String shopName) {
+        ShopPersistence shopPersistence = new ShopPersistence();
+        int shopId = shopPersistence.findAll().stream().filter(s -> s.getName().equals(shopName)).map(Shop::getId).toList().get(0);
+        return productsMap.get(shopId).stream().filter(p -> p.getProduct().getId()==product.getId()).toList().size() > 0;
     }
 
     public List<ShopProduct> filterProducts(TextField brandFilter, CheckBox availabilityFilter, TextField priceFilter, int shopId) {

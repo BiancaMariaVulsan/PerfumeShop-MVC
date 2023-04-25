@@ -2,7 +2,6 @@ package com.example.perfumeshop.controller;
 
 import com.example.perfumeshop.model.Product;
 import com.example.perfumeshop.model.Shop;
-import com.example.perfumeshop.model.ShopProduct;
 import com.example.perfumeshop.model.persistence.ShopPersistence;
 import com.example.perfumeshop.model.persistence.files.CsvPersistence;
 import com.example.perfumeshop.model.persistence.files.JsonPersistence;
@@ -59,7 +58,7 @@ public class ManagerController implements Initializable {
     @FXML
     private ChoiceBox<String> shopChoice;
 
-    private ProductController productPresenter = new ProductController();
+    private ProductController productController = new ProductController();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -67,15 +66,15 @@ public class ManagerController implements Initializable {
         initShopCheckBox(shopChoice);
 
         filterButton.setOnAction(e -> {
-            var filteredItems = productPresenter.filterProducts(nameFilter, brandFilter, availabilityFilter, priceFilter);
+            var filteredItems = productController.filterProducts(nameFilter, brandFilter, availabilityFilter, priceFilter, shopChoice.getValue());
             Controller.populateTableProductsFiltered(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, filteredItems);
         });
         sortNameButton.setOnAction(e -> {
-            var sortedItems = productPresenter.sortByName();
+            var sortedItems = productController.sortByName();
             Controller.populateTableProductsFiltered(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, sortedItems);
         });
         sortPriceButton.setOnAction(e -> {
-            var sortedItems = productPresenter.sortByPrice();
+            var sortedItems = productController.sortByPrice();
             Controller.populateTableProductsFiltered(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, sortedItems);
         });
         saveCSV.setOnAction(e -> {
