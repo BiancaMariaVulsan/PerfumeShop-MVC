@@ -6,13 +6,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
@@ -32,9 +30,14 @@ public class AdminController implements Initializable {
     private Button deleteButton;
     @FXML
     private Button editButton;
+    @FXML
+    private Button filterButton;
+    @FXML
+    private ChoiceBox<String> roleChoice;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initRoleCheckBox();
         Controller.populateTablePersons(personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
         addButton.setOnAction(e -> {
             Callback<Class<?>, Object> controllerFactory = type -> {
@@ -83,7 +86,16 @@ public class AdminController implements Initializable {
             };
             Controller.loadFXML("/com/example/perfumeshop/register-view.fxml", controllerFactory);
         });
+        filterButton.setOnAction(e -> {
+            filter();
+        });
     }
+
+    private void filter() {
+        List<Person> persons = personPersistence.findAll();
+        personItems.setAll(persons.stream().filter(p -> p.getRole().name().equals(roleChoice.getValue())).toList());
+    }
+
     private static boolean deletePersons(Person person) {
         try {
             personPersistence.delete(person);
@@ -91,5 +103,12 @@ public class AdminController implements Initializable {
             return false;
         }
         return true;
+    }
+
+    private void initRoleCheckBox() {
+        roleChoice.getItems().add("EMPLOYEE");
+        roleChoice.getItems().add("MANAGER");
+        roleChoice.getItems().add("ADMIN");
+        roleChoice.setValue("EMPLOYEE");
     }
 }
