@@ -1,6 +1,10 @@
 package com.example.perfumeshop.controller;
 
 import com.example.perfumeshop.model.ShopProduct;
+import com.example.perfumeshop.model.persistence.files.CsvPersistence;
+import com.example.perfumeshop.model.persistence.files.JsonPersistence;
+import com.example.perfumeshop.model.persistence.files.TxtPersistence;
+import com.example.perfumeshop.model.persistence.files.XmlPersistence;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -39,6 +43,15 @@ public class EmployeeController implements Initializable {
     private CheckBox availabilityFilter;
     @FXML
     private TextField priceFilter;
+
+    @FXML
+    private Button saveCSV;
+    @FXML
+    private Button saveJSON;
+    @FXML
+    private Button saveXML;
+    @FXML
+    private Button saveTXT;
 
     private final int idShop;
     private final ProductController productPresenter = new ProductController();
@@ -92,6 +105,22 @@ public class EmployeeController implements Initializable {
                 }
             };
             Controller.loadFXML("/com/example/perfumeshop/add-product-view.fxml", controllerFactory);
+        });
+        saveCSV.setOnAction(e -> {
+            CsvPersistence saveSpCSVCommand = new CsvPersistence(productItems.stream().map(ShopProduct::getProduct).toList(), "shopProducts.csv");
+            saveSpCSVCommand.save();
+        });
+        saveJSON.setOnAction(e -> {
+            JsonPersistence saveSpJsonCommand = new JsonPersistence(productItems.stream().map(ShopProduct::getProduct).toList(), "shopProducts.json");
+            saveSpJsonCommand.save();
+        });
+        saveXML.setOnAction(e -> {
+            XmlPersistence saveSpXmlCommand = new XmlPersistence(productItems.stream().map(ShopProduct::getProduct).toList(), "shopProducts.xml");
+            saveSpXmlCommand.save();
+        });
+        saveTXT.setOnAction(e -> {
+            TxtPersistence saveSpTxtCommand = new TxtPersistence(productItems.stream().map(ShopProduct::getProduct).toList(), "shopProducts.txt");
+            saveSpTxtCommand.save();
         });
     }
 }

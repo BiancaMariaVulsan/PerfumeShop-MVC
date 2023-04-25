@@ -2,6 +2,9 @@ package com.example.perfumeshop.model;
 
 import javafx.beans.property.*;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "product")
 public class Product {
     private final IntegerProperty id = new SimpleIntegerProperty();
     private final StringProperty name = new SimpleStringProperty();

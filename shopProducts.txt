@@ -1,0 +1,8 @@
+Name: Jadore
+Price: 370.0
+Brand: Dior
+
+Name: Candy
+Price: 449.0
+Brand: Prada
+
