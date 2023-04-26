@@ -1,0 +1,11 @@
+{
+    "firstNameColumn" : "Vorname",
+    "lastNameColumn" : "Familienname",
+    "roleColumn" : "Rolle",
+    "addButton" : "Hinzufügen",
+    "deleteButton" : "Löschen",
+    "editButton" : "Bearbeiten",
+    "filterButton" : "Filter",
+    "roleChoice" : [ "Administrator", "User" ]
+}
+  

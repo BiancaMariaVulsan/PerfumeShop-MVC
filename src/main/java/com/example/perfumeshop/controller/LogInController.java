@@ -1,32 +1,47 @@
 package com.example.perfumeshop.controller;
 
 import com.example.perfumeshop.model.Employee;
+import com.example.perfumeshop.model.Language;
 import com.example.perfumeshop.model.Person;
 import com.example.perfumeshop.model.Role;
 import com.example.perfumeshop.model.persistence.EmployeePersistence;
 import com.example.perfumeshop.model.persistence.PersonPersistence;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.util.Callback;
 
-public class LogInController {
+import java.net.URL;
+import java.util.*;
+
+public class LogInController extends Observable implements Initializable {
     @FXML
     private TextField usernameTextField;
     @FXML
     private TextField passwordTextField;
     @FXML
     private Button signInButton;
+    @FXML
+    private ChoiceBox<String> languageChoice;
 
     private static final PersonPersistence personPersistence = new PersonPersistence();
     private static final EmployeePersistence employeePersistence = new EmployeePersistence();
+    private final LanguageController languageController = new LanguageController();
+    private Language language;
 
     public LogInController() {}
 
-    @FXML
-    public void initialize() {
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        initLanguageCheckBox();
+        this.addObserver(languageController);
+
         signInButton.setOnAction(actionEvent -> {
+            languageController.update(this, languageChoice.getValue());
+            language = languageController.getLanguage();
             signIn();
         });
     }
@@ -53,7 +68,7 @@ public class LogInController {
         if (person.getRole().equals(Role.ADMIN)) {
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == AdminController.class) {
-                    return new AdminController();
+                    return new AdminController(language);
                 } else {
                     try {
                         return type.newInstance();
@@ -112,5 +127,19 @@ public class LogInController {
                 .filter(p -> p.getUsername().equals(username))
                 .findFirst()
                 .orElse(null);
+    }
+
+    private void initLanguageCheckBox() {
+        List<String> languages = new ArrayList<>() {
+            {
+                add("English");
+                add("Romanian");
+                add("German");
+            }
+        };
+        for(String language: languages) {
+            languageChoice.getItems().add(language);
+        }
+        languageChoice.setValue(languages.get(0));
     }
 }

@@ -1,0 +1,11 @@
+{
+    "firstNameColumn" : "First Name",
+    "lastNameColumn" : "Last Name",
+    "roleColumn" : "Role",
+    "addButton" : "Add",
+    "deleteButton" : "Delete",
+    "editButton" : "Edit",
+    "filterButton" : "Filter",
+    "roleChoice" : ["Admin", "Manager", "Employee"]
+}
+  

@@ -1,0 +1,11 @@
+{
+    "firstNameColumn" : "Prenume",
+    "lastNameColumn" : "Nume",
+    "roleColumn" : "Rol",
+    "addButton" : "Adaugare",
+    "deleteButton" : "Stergere",
+    "editButton" : "Editare",
+    "filterButton" : "Filtrare",
+    "roleChoice" : [ "Administrator", "Utilizator" ]
+}
+  

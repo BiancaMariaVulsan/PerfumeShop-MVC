@@ -1,5 +1,6 @@
 package com.example.perfumeshop.controller;
 
+import com.example.perfumeshop.model.Language;
 import com.example.perfumeshop.model.Person;
 import com.example.perfumeshop.model.persistence.PersonPersistence;
 import javafx.collections.FXCollections;
@@ -10,8 +11,7 @@ import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AdminController implements Initializable {
     @FXML
@@ -34,9 +34,22 @@ public class AdminController implements Initializable {
     private Button filterButton;
     @FXML
     private ChoiceBox<String> roleChoice;
+    private final Language language;
+
+    public AdminController(Language language) {
+        this.language = language;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setAddButton(language.getAddButton());
+        setDeleteButton(language.getDeleteButton());
+        setEditButton(language.getEditButton());
+        setFilterButton(language.getFilterButton());
+        setFirstNameColumn(language.getFirstNameColumn());
+        setLastNameColumn(language.getLastNameColumn());
+        setRoleChoice(language.getRoleChoice());
+
         initRoleCheckBox();
         Controller.populateTablePersons(personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
         addButton.setOnAction(e -> {
@@ -110,5 +123,37 @@ public class AdminController implements Initializable {
         roleChoice.getItems().add("MANAGER");
         roleChoice.getItems().add("ADMIN");
         roleChoice.setValue("EMPLOYEE");
+    }
+
+    public void setFirstNameColumn(String firstNameColumn) {
+        this.firstNameColumn.setText(firstNameColumn);
+    }
+
+    public void setLastNameColumn(String lastNameColumn) {
+        this.lastNameColumn.setText(lastNameColumn);
+    }
+
+    public void setRoleColumn(String roleColumn) {
+        this.roleColumn.setText(roleColumn);
+    }
+
+    public void setAddButton(String textButton) {
+        this.addButton.setText(textButton);
+    }
+
+    public void setDeleteButton(String deleteButton) {
+        this.deleteButton.setText(deleteButton);
+    }
+
+    public void setEditButton(String editButton) {
+        this.editButton.setText(editButton);
+    }
+
+    public void setFilterButton(String filterButton) {
+        this.filterButton.setText(filterButton);
+    }
+
+    public void setRoleChoice(List<String> roleChoice) {
+
     }
 }

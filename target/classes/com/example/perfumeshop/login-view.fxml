@@ -35,6 +35,7 @@
         </SplitPane>
         <ButtonBar prefHeight="40.0" prefWidth="183.0">
             <buttons>
+            <ChoiceBox fx:id="languageChoice" prefWidth="150.0" />
                 <Button fx:id="signInButton" mnemonicParsing="false" text="Sign in" />
             </buttons>
         </ButtonBar>
