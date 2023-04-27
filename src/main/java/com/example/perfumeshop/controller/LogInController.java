@@ -82,7 +82,7 @@ public class LogInController extends Observable implements Initializable {
         } else if (person.getRole().equals(Role.MANAGER)) {
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == ManagerController.class) {
-                    return new ManagerController();
+                    return new ManagerController(language);
                 } else {
                     try {
                         return type.newInstance();
@@ -96,7 +96,7 @@ public class LogInController extends Observable implements Initializable {
         } else {
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == com.example.perfumeshop.controller.EmployeeController.class) {
-                    return new com.example.perfumeshop.controller.EmployeeController(getShopId(username));
+                    return new com.example.perfumeshop.controller.EmployeeController(getShopId(username), language);
                 } else {
                     try {
                         return type.newInstance();

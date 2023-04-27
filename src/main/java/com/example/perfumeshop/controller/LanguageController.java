@@ -15,11 +15,11 @@ public class LanguageController implements Observer {
     public void update(Observable o, Object arg) {
         try {
             if(arg.equals("English")) {
-                language = languagePersistence.read("D:\\FACULTATE\\ANIII\\SEM2\\SD\\lab\\Project_MVC\\PerfumeShop-MVC\\PerfumeShop\\EnglishLanguage.json");
+                language = languagePersistence.read("EnglishLanguage.json");
             } else if(arg.equals("Romanian")) {
-                language = languagePersistence.read("D:\\FACULTATE\\ANIII\\SEM2\\SD\\lab\\Project_MVC\\PerfumeShop-MVC\\PerfumeShop\\RomanianLanguage.json");
+                language = languagePersistence.read("RomanianLanguage.json");
             } else {
-                language = languagePersistence.read("D:\\FACULTATE\\ANIII\\SEM2\\SD\\lab\\Project_MVC\\PerfumeShop-MVC\\PerfumeShopGermanLanguage.json");
+                language = languagePersistence.read("GermanLanguage.json");
             }
         } catch (Exception e) {
             System.out.println("Exception while reading: " + e.getMessage() + " at " + Arrays.toString(e.getStackTrace()));

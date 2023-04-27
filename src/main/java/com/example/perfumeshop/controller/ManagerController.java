@@ -1,5 +1,6 @@
 package com.example.perfumeshop.controller;
 
+import com.example.perfumeshop.model.Language;
 import com.example.perfumeshop.model.Product;
 import com.example.perfumeshop.model.Shop;
 import com.example.perfumeshop.model.persistence.ShopPersistence;
@@ -61,7 +62,12 @@ public class ManagerController implements Initializable {
     @FXML
     private ChoiceBox<String> shopChoice;
 
+    private final Language language;
     private ProductController productController = new ProductController();
+
+    public ManagerController(Language language) {
+        this.language = language;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

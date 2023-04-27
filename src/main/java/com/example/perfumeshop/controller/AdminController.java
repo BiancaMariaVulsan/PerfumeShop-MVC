@@ -50,7 +50,6 @@ public class AdminController implements Initializable {
         setLastNameColumn(language.getLastNameColumn());
         setRoleChoice(language.getRoleChoice());
 
-        initRoleCheckBox();
         Controller.populateTablePersons(personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
         addButton.setOnAction(e -> {
             Callback<Class<?>, Object> controllerFactory = type -> {
@@ -118,13 +117,6 @@ public class AdminController implements Initializable {
         return true;
     }
 
-    private void initRoleCheckBox() {
-        roleChoice.getItems().add("EMPLOYEE");
-        roleChoice.getItems().add("MANAGER");
-        roleChoice.getItems().add("ADMIN");
-        roleChoice.setValue("EMPLOYEE");
-    }
-
     public void setFirstNameColumn(String firstNameColumn) {
         this.firstNameColumn.setText(firstNameColumn);
     }
@@ -154,6 +146,7 @@ public class AdminController implements Initializable {
     }
 
     public void setRoleChoice(List<String> roleChoice) {
-
+        ObservableList<String> items = FXCollections.observableArrayList(roleChoice);
+        this.roleChoice.setItems(items);
     }
 }

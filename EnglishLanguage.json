@@ -6,6 +6,13 @@
     "deleteButton" : "Delete",
     "editButton" : "Edit",
     "filterButton" : "Filter",
-    "roleChoice" : ["Admin", "Manager", "Employee"]
+    "roleChoice" : ["Admin", "Manager", "Employee"],
+    "availabilityColumn": "",
+    "nameColumn": "Name",
+    "brandColumn": "Brand",
+    "priceColumn": "Price",
+    "saveCSV": "saveCSV",
+    "saveJSON": "saveJSON",
+    "saveXML": "saveXML",
+    "saveTXT": "saveTXT"
 }
-  

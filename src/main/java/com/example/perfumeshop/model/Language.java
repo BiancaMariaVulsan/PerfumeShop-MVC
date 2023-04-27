@@ -30,9 +30,33 @@ public class Language {
     @JsonProperty("roleChoice")
     private List<String> roleChoice;
 
+    @JsonProperty("availabilityColumn")
+    private String availabilityColumn;
+
+    @JsonProperty("nameColumn")
+    private String nameColumn;
+
+    @JsonProperty("brandColumn")
+    private String brandColumn;
+
+    @JsonProperty("priceColumn")
+    private String priceColumn;
+
+    @JsonProperty("saveCSV")
+    private String saveCSV;
+
+    @JsonProperty("saveJSON")
+    private String saveJSON;
+
+    @JsonProperty("saveXML")
+    private String saveXML;
+
+    @JsonProperty("saveTXT")
+    private String saveTXT;
+
     public Language(String firstNameColumn, String lastNameColumn, String roleColumn,
                     String addButton, String deleteButton, String editButton,
-                    String filterButton, List<String> roleChoice) {
+                    String filterButton, List<String> roleChoice, String availabilityColumn) {
         this.firstNameColumn = firstNameColumn;
         this.lastNameColumn = lastNameColumn;
         this.roleColumn = roleColumn;
@@ -41,6 +65,7 @@ public class Language {
         this.editButton = editButton;
         this.filterButton = filterButton;
         this.roleChoice = roleChoice;
+        this.availabilityColumn = availabilityColumn;
     }
 
     public Language() {
@@ -108,5 +133,69 @@ public class Language {
 
     public void setRoleChoice(List<String> roleChoice) {
         this.roleChoice = roleChoice;
+    }
+
+    public String getAvailabilityColumn() {
+        return availabilityColumn;
+    }
+
+    public void setAvailabilityColumn(String availabilityColumn) {
+        this.availabilityColumn = availabilityColumn;
+    }
+
+    public String getNameColumn() {
+        return nameColumn;
+    }
+
+    public void setNameColumn(String nameColumn) {
+        this.nameColumn = nameColumn;
+    }
+
+    public String getBrandColumn() {
+        return brandColumn;
+    }
+
+    public void setBrandColumn(String brandColumn) {
+        this.brandColumn = brandColumn;
+    }
+
+    public String getPriceColumn() {
+        return priceColumn;
+    }
+
+    public void setPriceColumn(String priceColumn) {
+        this.priceColumn = priceColumn;
+    }
+
+    public String getSaveCSV() {
+        return saveCSV;
+    }
+
+    public void setSaveCSV(String saveCSV) {
+        this.saveCSV = saveCSV;
+    }
+
+    public String getSaveJSON() {
+        return saveJSON;
+    }
+
+    public void setSaveJSON(String saveJSON) {
+        this.saveJSON = saveJSON;
+    }
+
+    public String getSaveXML() {
+        return saveXML;
+    }
+
+    public void setSaveXML(String saveXML) {
+        this.saveXML = saveXML;
+    }
+
+    public String getSaveTXT() {
+        return saveTXT;
+    }
+
+    public void setSaveTXT(String saveTXT) {
+        this.saveTXT = saveTXT;
     }
 }

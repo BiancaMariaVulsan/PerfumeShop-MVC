@@ -1,5 +1,6 @@
 package com.example.perfumeshop.controller;
 
+import com.example.perfumeshop.model.Language;
 import com.example.perfumeshop.model.ShopProduct;
 import com.example.perfumeshop.model.persistence.files.CsvPersistence;
 import com.example.perfumeshop.model.persistence.files.JsonPersistence;
@@ -55,13 +56,28 @@ public class EmployeeController implements Initializable {
 
     private final int idShop;
     private final ProductController productPresenter = new ProductController();
+    private final Language language;
 
-    public EmployeeController(int isShop) {
+    public EmployeeController(int isShop, Language language) {
         this.idShop = isShop;
+        this.language = language;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setAddButton(language.getAddButton());
+        setDeleteButton(language.getDeleteButton());
+        setEditButton(language.getEditButton());
+        setFilterButton(language.getFilterButton());
+        setAvailabilityColumn(language.getAvailabilityColumn());
+        setBrandColumn(language.getBrandColumn());
+        setNameColumn(language.getNameColumn());
+        setPriceColumn(language.getPriceColumn());
+        setSaveCSV(language.getSaveCSV());
+        setSaveJSON(language.getSaveJSON());
+        setSaveTXT(language.getSaveTXT());
+        setSaveXML(language.getSaveXML());
+
         Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, idShop);
         addButton.setOnAction(e -> {
             Callback<Class<?>, Object> controllerFactory = type -> {
@@ -122,5 +138,53 @@ public class EmployeeController implements Initializable {
             TxtPersistence saveSpTxtCommand = new TxtPersistence(productItems.stream().map(ShopProduct::getProduct).toList(), "shopProducts.txt");
             saveSpTxtCommand.save();
         });
+    }
+
+    public void setNameColumn(String nameColumn) {
+        this.nameColumn.setText(nameColumn);
+    }
+
+    public void setBrandColumn(String brandColumn) {
+        this.brandColumn.setText(brandColumn);
+    }
+
+    public void setAvailabilityColumn(String availabilityColumn) {
+        this.availabilityColumn.setText(availabilityColumn);
+    }
+
+    public void setPriceColumn(String priceColumn) {
+        this.priceColumn.setText(priceColumn);
+    }
+
+    public void setAddButton(String addButton) {
+        this.addButton.setText(addButton);
+    }
+
+    public void setDeleteButton(String deleteButton) {
+        this.deleteButton.setText(deleteButton);
+    }
+
+    public void setEditButton(String editButton) {
+        this.editButton.setText(editButton);
+    }
+
+    public void setFilterButton(String filterButton) {
+        this.filterButton.setText(filterButton);
+    }
+
+    public void setSaveCSV(String saveCSV) {
+        this.saveCSV.setText(saveCSV);
+    }
+
+    public void setSaveJSON(String saveJSON) {
+        this.saveJSON.setText(saveJSON);
+    }
+
+    public void setSaveXML(String saveXML) {
+        this.saveXML.setText(saveXML);
+    }
+
+    public void setSaveTXT(String saveTXT) {
+        this.saveTXT.setText(saveTXT);
     }
 }

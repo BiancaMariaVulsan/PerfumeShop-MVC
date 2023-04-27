@@ -6,6 +6,13 @@
     "deleteButton" : "Löschen",
     "editButton" : "Bearbeiten",
     "filterButton" : "Filter",
-    "roleChoice" : [ "Administrator", "User" ]
+    "roleChoice" : [ "ADMINISTRATOR", "MITERBEITER", "MANAGER" ],
+    "nameColumn": "Name",
+    "brandColumn": "Brand",
+    "priceColumn": "Price",
+    "saveCSV": "saveCSV",
+    "saveJSON": "saveJSON",
+    "saveXML": "saveXML",
+    "saveTXT": "saveTXT"
 }
   
