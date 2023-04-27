@@ -1,7 +1,6 @@
 package com.example.perfumeshop.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javafx.scene.control.Button;
 
 import java.util.List;
 

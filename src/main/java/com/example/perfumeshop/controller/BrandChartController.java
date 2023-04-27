@@ -12,15 +12,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class PieChartController implements Initializable {
+public class BrandChartController implements Initializable {
     @FXML
     private PieChart brandPieChart;
-    private List<Product> products;
+    private final List<Product> products;
 
-    public PieChartController(List<Product> products) {
+    public BrandChartController(List<Product> products) {
         this.products = products;
     }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

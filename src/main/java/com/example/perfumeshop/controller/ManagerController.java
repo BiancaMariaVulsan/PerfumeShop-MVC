@@ -16,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -58,6 +59,8 @@ public class ManagerController implements Initializable {
     private Button saveTXT;
     @FXML
     private Button brandAnalysisButton;
+    @FXML
+    public Button priceAnalysisButton;
 
     @FXML
     private ChoiceBox<String> shopChoice;
@@ -118,9 +121,18 @@ public class ManagerController implements Initializable {
             saveSpTxtCommand.save();
         });
         brandAnalysisButton.setOnAction(e -> {
+            ArrayList<String> brands = new ArrayList<>() {
+                {
+                    add("Valentino");
+                    add("Versace");
+                    add("Prada");
+                    add("Dolce Gabana");
+                    add("Dior");
+                }
+            };
             Callback<Class<?>, Object> controllerFactory = type -> {
-                if (type == PieChartController.class) {
-                    return new PieChartController(productItems);
+                if (type == BrandChartController.class) {
+                    return new BrandChartController(productItems);
                 } else {
                     try {
                         return type.newInstance();
@@ -131,6 +143,21 @@ public class ManagerController implements Initializable {
                 }
             };
             Controller.loadFXML("/com/example/perfumeshop/brand-pie-chart.fxml", controllerFactory);
+        });
+        priceAnalysisButton.setOnAction(e -> {
+            Callback<Class<?>, Object> controllerFactory = type -> {
+                if (type == PriceChartController.class) {
+                    return new PriceChartController(productItems);
+                } else {
+                    try {
+                        return type.newInstance();
+                    } catch (Exception exc) {
+                        System.err.println("Could not load register controller " + type.getName());
+                        throw new RuntimeException(exc);
+                    }
+                }
+            };
+            Controller.loadFXML("/com/example/perfumeshop/price-pie-chart.fxml", controllerFactory);
         });
     }
 
