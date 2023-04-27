@@ -18,6 +18,10 @@
     "sortNameButton": "SortareNume",
     "sortPriceButton": "SortarePret",
     "brandAnalysisButton": "DiagramaBradurilor",
-    "priceAnalysisButton": "DiagramaPreturilor"
+    "priceAnalysisButton": "DiagramaPreturilor",
+    "username": "Nume de utilizator",
+    "password": "Parola",
+    "role": "Rol",
+    "shop": "Magazin"
 }
   

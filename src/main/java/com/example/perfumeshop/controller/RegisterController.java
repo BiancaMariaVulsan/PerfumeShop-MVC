@@ -1,7 +1,7 @@
 package com.example.perfumeshop.controller;
 
+import com.example.perfumeshop.model.Language;
 import com.example.perfumeshop.model.Person;
-import com.example.perfumeshop.model.Role;
 import com.example.perfumeshop.model.Shop;
 import com.example.perfumeshop.model.persistence.PersonPersistence;
 import javafx.collections.FXCollections;
@@ -19,9 +19,22 @@ import java.util.ResourceBundle;
 public class RegisterController implements Initializable
 {
     @FXML
+    public Label firstNameLabel;
+    @FXML
+    public Label lastNameLabel;
+    @FXML
+    public Label usrnameLabel;
+    @FXML
+    public Label passwordLabel;
+    @FXML
+    public Label shopLabel;
+    @FXML
+    public Label roleLabel;
+    @FXML
     private ProgressIndicator progressIndicator;
     @FXML
     private CheckBox termsCheckBox;
+
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -35,7 +48,7 @@ public class RegisterController implements Initializable
     @FXML
     private Button registerButton;
     @FXML
-    private ChoiceBox<Role> roleChoiceBox;
+    private ChoiceBox<String> roleChoiceBox;
     @FXML
     private ChoiceBox<Shop> shopChoiceBox;
     
@@ -53,13 +66,15 @@ public class RegisterController implements Initializable
     private TableColumn<Person, String> roleColumn;
 
     private static final PersonPersistence personPersistence = new PersonPersistence();
+    private Language language;
 
-    public RegisterController() {
+    public RegisterController(Language language) {
         this.isEditing = false;
         this.registerPresenter = new PersonController(this);
+        this.language = language;
     }
 
-    public RegisterController(Person item, TableView<Person> personTableView, ObservableList<Person> personItems,
+    public RegisterController(Language language, Person item, TableView<Person> personTableView, ObservableList<Person> personItems,
                               TableColumn<Person, String> firstNameColumn, TableColumn<Person, String> lastNameColumn,
                               TableColumn<Person, String> roleColumn) {
         this.isEditing = true;
@@ -70,9 +85,10 @@ public class RegisterController implements Initializable
         this.firstNameColumn = firstNameColumn;
         this.lastNameColumn = lastNameColumn;
         this.roleColumn = roleColumn;
+        this.language = language;
     }
 
-    public RegisterController(TableView<Person> personTableView, ObservableList<Person> personItems,
+    public RegisterController(Language language, TableView<Person> personTableView, ObservableList<Person> personItems,
                               TableColumn<Person, String> firstNameColumn, TableColumn<Person, String> lastNameColumn,
                               TableColumn<Person, String> roleColumn) {
         this.isEditing = false;
@@ -82,13 +98,21 @@ public class RegisterController implements Initializable
         this.firstNameColumn = firstNameColumn;
         this.lastNameColumn = lastNameColumn;
         this.roleColumn = roleColumn;
+        this.language = language;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setFirstNameLabel(language.getFirstNameColumn());
+        setLastNameLabel(language.getLastNameColumn());
+        setRoleChoiceBox(language.getRoleChoice());
+        setUsrnameLabel(language.getUsername());
+        setPasswordLabel(language.getPassword());
+        setRoleLabel(language.getRole());
+        setShopLabel(language.getShop());
+
         registerButton.setDisable(true);
         registerPresenter.setProgressIndicator();
-        initRoleCheckBox();
         initShopCheckBox();
 
         if(this.isEditing)
@@ -97,8 +121,8 @@ public class RegisterController implements Initializable
             lastNameTextField.setText(personToUpdate.getLastName());
             usernameTextField.setText(personToUpdate.getUsername());
             passwordTextField.setText(personToUpdate.getPassword());
-            roleChoiceBox.setValue(personToUpdate.getRole());
-            registerPresenter.enableShopChoiceBox(personToUpdate.getRole());
+            roleChoiceBox.setValue(personToUpdate.getRole().name());
+            registerPresenter.enableShopChoiceBox(personToUpdate.getRole().name());
         }
 
         exitButton.setOnAction(actionEvent -> {
@@ -130,12 +154,6 @@ public class RegisterController implements Initializable
             registerPresenter.enableShopChoiceBox(newValue);
         });
     }
-    private void initRoleCheckBox() {
-        roleChoiceBox.getItems().add(Role.EMPLOYEE);
-        roleChoiceBox.getItems().add(Role.MANAGER);
-        roleChoiceBox.getItems().add(Role.ADMIN);
-        roleChoiceBox.setValue(Role.EMPLOYEE);
-    }
 
     public void initShopCheckBox() {
         List<Shop> shops = ShopController.getShops();
@@ -163,7 +181,7 @@ public class RegisterController implements Initializable
     public TextField getLastNameTextField() {
         return lastNameTextField;
     }
-    public ChoiceBox<Role> getRoleChoiceBox() {
+    public ChoiceBox<String> getRoleChoiceBox() {
         return roleChoiceBox;
     }
     public TableColumn<Person, String> getRoleColumn() {
@@ -171,5 +189,34 @@ public class RegisterController implements Initializable
     }
     public ChoiceBox<Shop> getShopChoiceBox() {
         return shopChoiceBox;
+    }
+
+    public void setFirstNameLabel(String firstNameLabel) {
+        this.firstNameLabel.setText(firstNameLabel);
+    }
+
+    public void setLastNameLabel(String lastNameLabel) {
+        this.lastNameLabel.setText(lastNameLabel);
+    }
+
+    public void setUsrnameLabel(String usrnameLabel) {
+        this.usrnameLabel.setText(usrnameLabel);
+    }
+
+    public void setPasswordLabel(String passwordLabel) {
+        this.passwordLabel.setText(passwordLabel);
+    }
+
+    public void setRoleChoiceBox(List<String> roleChoiceBox) {
+        ObservableList<String> items = FXCollections.observableArrayList(roleChoiceBox);
+        this.roleChoiceBox.setItems(items);
+    }
+
+    public void setShopLabel(String shopLabel) {
+        this.shopLabel.setText(shopLabel);
+    }
+
+    public void setRoleLabel(String roleLabel) {
+        this.roleLabel.setText(roleLabel);
     }
 }

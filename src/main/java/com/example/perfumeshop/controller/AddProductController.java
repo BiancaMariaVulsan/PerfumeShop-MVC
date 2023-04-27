@@ -39,7 +39,7 @@ public class AddProductController implements Initializable {
     private final boolean isEditing;
     private ShopProduct productToUpdate;
 
-    ProductController productPresenter = new ProductController(); //todo: change similar to register if needed
+    ProductController productController = new ProductController();
 
     public AddProductController(TableView<ShopProduct> productTableView, ObservableList<ShopProduct> productItems,
                                 TableColumn<ShopProduct, String> nameColumn, TableColumn<ShopProduct, String> brandColumn,
@@ -85,11 +85,10 @@ public class AddProductController implements Initializable {
 
         saveButton.setOnAction(e -> {
             if(isEditing) {
-//                productPresenter.updateProduct(productToUpdate.getId(),nameText, brandText, availabilityCheck, priceText, idShop);
-                var products = productPresenter.updateProductInShop(productToUpdate.getProduct(), stockText, idShop);
+                var products = productController.updateProductInShop(productToUpdate.getProduct(), stockText, idShop);
                 Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, products);
             } else {
-                var products = productPresenter.addProduct(nameText, brandText, stockText, priceText, idShop);
+                var products = productController.addProduct(nameText, brandText, stockText, priceText, idShop);
                 Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, products);
             }
         });

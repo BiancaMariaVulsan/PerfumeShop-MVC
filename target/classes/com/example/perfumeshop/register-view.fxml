@@ -22,7 +22,7 @@
         </HBox>
       <SplitPane dividerPositions="0.5" layoutX="20.0" layoutY="88.0" prefHeight="40.0" prefWidth="690.0">
          <items>
-            <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="First Name :">
+            <Label fx:id="firstNameLabel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="First Name :">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -36,7 +36,7 @@
       </SplitPane>
       <SplitPane dividerPositions="0.5" layoutX="10.0" layoutY="200.0" prefHeight="40.0" prefWidth="692.0">
          <items>
-            <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Last Name :">
+            <Label fx:id="lastNameLabel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Last Name :">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -50,7 +50,7 @@
       </SplitPane>
       <SplitPane dividerPositions="0.5" layoutX="10.0" layoutY="200.0" prefHeight="40.0" prefWidth="690.0">
          <items>
-            <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Username :">
+            <Label fx:id="usrnameLabel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Username :">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -64,7 +64,7 @@
       </SplitPane>
       <SplitPane dividerPositions="0.5" layoutX="10.0" layoutY="280.0" prefHeight="40.0" prefWidth="690.0">
          <items>
-            <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Password :">
+            <Label fx:id="passwordLabel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Password :">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -78,7 +78,7 @@
       </SplitPane>
       <SplitPane dividerPositions="0.5" layoutX="10.0" layoutY="200.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="300.0">
          <items>
-            <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Role :">
+            <Label fx:id="roleLabel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Role :">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
@@ -88,7 +88,7 @@
       </SplitPane>
       <SplitPane dividerPositions="0.5" layoutX="10.0" layoutY="241.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="300.0">
          <items>
-            <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Shop :">
+            <Label fx:id="shopLabel" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="84.0" text="Shop :">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>

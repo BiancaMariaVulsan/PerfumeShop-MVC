@@ -39,15 +39,15 @@ public class PersonController {
         }
     }
     public void register() {
-        Role role = registerView.getRoleChoiceBox().getValue();
+        String role = registerView.getRoleChoiceBox().getValue();
         Person person;
-        if(role.equals(Role.EMPLOYEE)) {
+        if(role.equals("EMPLOYEE")) {
             person = new Employee(registerView.getFirstNameTextField().getText(),
                     registerView.getLastNameTextField().getText(), registerView.getUsernameTextField().getText(),
                     registerView.getPasswordTextField().getText(), registerView.getShopChoiceBox().getValue().getId());
         } else {
             person = new Person(registerView.getFirstNameTextField().getText(),
-                    registerView.getLastNameTextField().getText(), role, registerView.getUsernameTextField().getText(),
+                    registerView.getLastNameTextField().getText(), Role.valueOf(role), registerView.getUsernameTextField().getText(),
                     registerView.getPasswordTextField().getText());
         }
         if(addPerson(person)) {
@@ -60,18 +60,18 @@ public class PersonController {
     }
 
     public void updatePerson(Person personToUpdate) {
-        Role role = registerView.getRoleChoiceBox().getValue();
+        String role = registerView.getRoleChoiceBox().getValue();
         PersonPersistence personPersistence = new PersonPersistence();
         EmployeePersistence employeePersistence = new EmployeePersistence();
         boolean successUpdate = false;
-        if(role.equals(Role.EMPLOYEE)) {
+        if(role.equals("EMPLOYEE")) {
             personToUpdate = new Employee(personToUpdate.getId(), registerView.getFirstNameTextField().getText(),
                     registerView.getLastNameTextField().getText(), registerView.getUsernameTextField().getText(),
                     registerView.getPasswordTextField().getText(), registerView.getShopChoiceBox().getValue().getId());
             successUpdate = employeePersistence.update((Employee) personToUpdate);
         } else {
             personToUpdate = new Person(personToUpdate.getId(), registerView.getFirstNameTextField().getText(),
-                    registerView.getLastNameTextField().getText(), registerView.getRoleChoiceBox().getValue(),
+                    registerView.getLastNameTextField().getText(), Role.valueOf(registerView.getRoleChoiceBox().getValue()),
                     registerView.getUsernameTextField().getText(), registerView.getPasswordTextField().getText());
             successUpdate = personPersistence.update(personToUpdate);
         }
@@ -106,8 +106,8 @@ public class PersonController {
         return true;
     }
 
-    public void enableShopChoiceBox(Role role) {
-        if(role.equals(Role.EMPLOYEE)) {
+    public void enableShopChoiceBox(String role) {
+        if(role.equals("EMPLOYEE")) {
             registerView.getShopChoiceBox().setDisable(false);
         } else {
             registerView.getShopChoiceBox().setDisable(true);

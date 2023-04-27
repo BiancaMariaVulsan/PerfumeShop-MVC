@@ -1,7 +1,6 @@
 package com.example.perfumeshop.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javafx.scene.control.Button;
 
 import java.util.List;
 
@@ -66,6 +65,18 @@ public class Language {
 
     @JsonProperty("priceAnalysisButton")
     public String priceAnalysisButton;
+
+    @JsonProperty("username")
+    public String username;
+
+    @JsonProperty("password")
+    public String password;
+
+    @JsonProperty("role")
+    public String role;
+
+    @JsonProperty("shop")
+    public String shop;
 
     public Language(String firstNameColumn, String lastNameColumn, String roleColumn,
                     String addButton, String deleteButton, String editButton,
@@ -245,5 +256,37 @@ public class Language {
 
     public void setPriceAnalysisButton(String priceAnalysisButton) {
         this.priceAnalysisButton = priceAnalysisButton;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getShop() {
+        return shop;
+    }
+
+    public void setShop(String shop) {
+        this.shop = shop;
     }
 }

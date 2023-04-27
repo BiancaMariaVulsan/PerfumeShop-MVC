@@ -18,6 +18,10 @@
     "sortNameButton": "Sortiername",
     "sortPriceButton": "Sortierpreis",
     "brandAnalysisButton": "MarkenAnalyse",
-    "priceAnalysisButton": "PreisAnalyse"
+    "priceAnalysisButton": "PreisAnalyse",
+    "username": "Nutzername",
+    "password": "Passwort",
+    "role": "Rolle",
+    "shop": "Geschäft"
 }
   

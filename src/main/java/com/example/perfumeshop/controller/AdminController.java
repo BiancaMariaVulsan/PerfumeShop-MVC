@@ -11,7 +11,8 @@ import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.*;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
     @FXML
@@ -54,7 +55,7 @@ public class AdminController implements Initializable {
         addButton.setOnAction(e -> {
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == RegisterController.class) {
-                    return new RegisterController(personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
+                    return new RegisterController(language, personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
                 } else {
                     try {
                         return type.newInstance();
@@ -86,7 +87,7 @@ public class AdminController implements Initializable {
             }
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == RegisterController.class) {
-                    return new RegisterController(item, personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
+                    return new RegisterController(language, item, personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
                 } else {
                     try {
                         return type.newInstance();
@@ -105,7 +106,16 @@ public class AdminController implements Initializable {
 
     private void filter() {
         List<Person> persons = personPersistence.findAll();
-        personItems.setAll(persons.stream().filter(p -> p.getRole().name().equals(roleChoice.getValue())).toList());
+        String role = roleChoice.getValue();
+        if(role.equals("ADMINISTRATOR")) {
+            role = "ADMIN";
+        } else if(role.equals("ANGAJAT") || role.equals("MITERBEITER")) {
+            role = "EMPLOYEE";
+        } else if (role.equals("MANAGER")){
+            role = "MANAGER";
+        }
+        String finalRole = role;
+        personItems.setAll(persons.stream().filter(p -> p.getRole().name().equals(finalRole)).toList());
     }
 
     private static boolean deletePersons(Person person) {

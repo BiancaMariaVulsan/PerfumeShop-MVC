@@ -6,7 +6,7 @@
     "deleteButton" : "Delete",
     "editButton" : "Edit",
     "filterButton" : "Filter",
-    "roleChoice" : ["Admin", "Manager", "Employee"],
+    "roleChoice" : ["ADMIN", "MANAGER", "EMPLOYEE"],
     "availabilityColumn": "Availability",
     "nameColumn": "Name",
     "brandColumn": "Brand",
@@ -18,5 +18,9 @@
     "sortNameButton": "sortName",
     "sortPriceButton": "sortPrice",
     "brandAnalysisButton": "brandAnalysis",
-    "priceAnalysisButton": "priceAnalysis"
+    "priceAnalysisButton": "priceAnalysis",
+    "username": "Username",
+    "password": "Password",
+    "role": "Role",
+    "shop": "Shop"
 }
