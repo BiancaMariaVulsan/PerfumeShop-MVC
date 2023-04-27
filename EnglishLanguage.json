@@ -17,5 +17,6 @@
     "saveTXT": "saveTXT",
     "sortNameButton": "sortName",
     "sortPriceButton": "sortPrice",
-    "brandAnalysisButton": "brandAnalysis"
+    "brandAnalysisButton": "brandAnalysis",
+    "priceAnalysisButton": "priceAnalysis"
 }

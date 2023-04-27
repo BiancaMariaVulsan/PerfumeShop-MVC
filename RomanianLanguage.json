@@ -17,6 +17,7 @@
     "saveTXT": "salveazaTXT",
     "sortNameButton": "SortareNume",
     "sortPriceButton": "SortarePret",
-    "brandAnalysisButton": "DiagramaBradurilor"
+    "brandAnalysisButton": "DiagramaBradurilor",
+    "priceAnalysisButton": "DiagramaPreturilor"
 }
   

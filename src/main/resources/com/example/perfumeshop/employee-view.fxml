@@ -15,8 +15,8 @@
             </columns>
         </TableView>
         <Button fx:id="filterButton" layoutX="694.0" layoutY="82.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="85.0" text="Filter" />
-        <Label layoutX="381.0" layoutY="25.0" text="Products" />
-        <Label layoutX="187.0" layoutY="91.0" text="Filtering Criteria" />
+        <Label layoutX="381.0" layoutY="25.0" />
+        <Label layoutX="187.0" layoutY="91.0" />
         <TextField fx:id="brandFilter" layoutX="312.0" layoutY="86.0" prefHeight="26.0" prefWidth="186.0" />
         <TextField fx:id="priceFilter" layoutX="606.0" layoutY="87.0" prefHeight="26.0" prefWidth="78.0" />
       <Button fx:id="deleteButton" layoutX="694.0" layoutY="170.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Delete" />
@@ -26,5 +26,8 @@
         <Button fx:id="saveJSON" layoutX="25.0" layoutY="242.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Save json" />
         <Button fx:id="saveXML" layoutX="25.0" layoutY="313.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Save xml" />
         <Button fx:id="saveTXT" layoutX="25.0" layoutY="387.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="85.0" text="Save txt" />
+      <TextField fx:id="nameFilter" layoutX="150.0" layoutY="85.0" prefHeight="26.0" prefWidth="155.0" />
+      <Button fx:id="sortByNameButton" layoutX="694.0" layoutY="397.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" text="Sort by name" />
+      <Button fx:id="sortByPriceButton" layoutX="694.0" layoutY="449.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="106.0" text="Sort by price" />
     </children>
 </AnchorPane>

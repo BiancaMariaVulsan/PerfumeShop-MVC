@@ -78,6 +78,7 @@ public class ManagerController implements Initializable {
         setSortNameButton(language.getSortNameButton());
         setSortPriceButton(language.getSortPriceButton());
         setBrandAnalysisButton(language.getBrandAnalysisButton());
+        setPriceAnalysisButton(language.getPriceAnalysisButton());
 
         setAvailabilityColumn(language.getAvailabilityColumn());
         setPriceColumn(language.getPriceColumn());
@@ -216,5 +217,9 @@ public class ManagerController implements Initializable {
 
     public void setBrandAnalysisButton(String brandAnalysisButton) {
         this.brandAnalysisButton.setText(brandAnalysisButton);
+    }
+
+    public void setPriceAnalysisButton(String priceAnalysisButton) {
+        this.priceAnalysisButton.setText(priceAnalysisButton);
     }
 }

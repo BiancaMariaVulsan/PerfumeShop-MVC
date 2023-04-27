@@ -14,9 +14,12 @@ import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.net.URL;
+import java.util.Comparator;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class EmployeeController implements Initializable {
+
     @FXML
     private TableView<ShopProduct> productTableView;
     private final ObservableList<ShopProduct> productItems = FXCollections.observableArrayList();
@@ -44,6 +47,8 @@ public class EmployeeController implements Initializable {
     private CheckBox availabilityFilter;
     @FXML
     private TextField priceFilter;
+    @FXML
+    public TextField nameFilter;
 
     @FXML
     private Button saveCSV;
@@ -53,6 +58,11 @@ public class EmployeeController implements Initializable {
     private Button saveXML;
     @FXML
     private Button saveTXT;
+
+    @FXML
+    public Button sortByNameButton;
+    @FXML
+    public Button sortByPriceButton;
 
     private final int idShop;
     private final ProductController productPresenter = new ProductController();
@@ -69,6 +79,8 @@ public class EmployeeController implements Initializable {
         setDeleteButton(language.getDeleteButton());
         setEditButton(language.getEditButton());
         setFilterButton(language.getFilterButton());
+        setSortByPriceButton(language.getSortPriceButton());
+        setSortByNameButton(language.getSortNameButton());
         setAvailabilityColumn(language.getAvailabilityColumn());
         setBrandColumn(language.getBrandColumn());
         setNameColumn(language.getNameColumn());
@@ -99,7 +111,7 @@ public class EmployeeController implements Initializable {
             Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, products);
         });
         filterButton.setOnAction(e -> {
-            var filteredItems = productPresenter.filterProducts(brandFilter, availabilityFilter, priceFilter, idShop);
+            var filteredItems = productPresenter.filterProducts(nameFilter, brandFilter, availabilityFilter, priceFilter, idShop);
             Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, filteredItems);
         });
         editButton.setOnAction(e -> {
@@ -137,6 +149,17 @@ public class EmployeeController implements Initializable {
         saveTXT.setOnAction(e -> {
             TxtPersistence saveSpTxtCommand = new TxtPersistence(productItems.stream().map(ShopProduct::getProduct).toList(), "shopProducts.txt");
             saveSpTxtCommand.save();
+        });
+        sortByNameButton.setOnAction(e -> {
+            productItems.setAll(productItems.stream()
+                    .sorted(Comparator.comparing(sp -> sp.getProduct().getName()))
+                    .collect(Collectors.toList()));
+
+        });
+        sortByPriceButton.setOnAction(e -> {
+            productItems.setAll(productItems.stream()
+                    .sorted(Comparator.comparing(sp -> sp.getProduct().getPrice()))
+                    .collect(Collectors.toList()));
         });
     }
 
@@ -186,5 +209,13 @@ public class EmployeeController implements Initializable {
 
     public void setSaveTXT(String saveTXT) {
         this.saveTXT.setText(saveTXT);
+    }
+
+    public void setSortByNameButton(String sortByNameButton) {
+        this.sortByNameButton.setText(sortByNameButton);
+    }
+
+    public void setSortByPriceButton(String sortByPriceButton) {
+        this.sortByPriceButton.setText(sortByPriceButton);
     }
 }

@@ -75,10 +75,14 @@ public class ProductController {
         return productsMap.get(shopId).stream().filter(p -> p.getProduct().getId()==product.getId()).toList().size() > 0;
     }
 
-    public List<ShopProduct> filterProducts(TextField brandFilter, CheckBox availabilityFilter, TextField priceFilter, int shopId) {
+    public List<ShopProduct> filterProducts(TextField nameFilter, TextField brandFilter, CheckBox availabilityFilter, TextField priceFilter, int shopId) {
         String brand = brandFilter.getText();
+        String name = nameFilter.getText();
         boolean availability = availabilityFilter.isSelected();
         double price;
+        if(name.isEmpty()) {
+            name = "";
+        }
         if(brand.isEmpty()) {
             brand = "";
         }
@@ -91,10 +95,12 @@ public class ProductController {
         List<ShopProduct> products = productsMap.get(shopId);
         String finalBrand = brand;
         double finalPrice = price;
+        String finalName = name;
         return products.stream()
                 .filter(it -> finalBrand.equals("") || it.getProduct().getBrand().toLowerCase().contains(finalBrand.toLowerCase()))
                 .filter(it -> !availability || (it.getStock() > 0))
                 .filter(it -> finalPrice == -1 || it.getProduct().getPrice() <= finalPrice)
+                .filter(it -> finalName.equals("") || it.getProduct().getName().toLowerCase().contains(finalName.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
