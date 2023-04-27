@@ -78,6 +78,12 @@ public class Language {
     @JsonProperty("shop")
     public String shop;
 
+    @JsonProperty("product")
+    public String product;
+
+    @JsonProperty("save")
+    public String save;
+
     public Language(String firstNameColumn, String lastNameColumn, String roleColumn,
                     String addButton, String deleteButton, String editButton,
                     String filterButton, List<String> roleChoice, String availabilityColumn,
@@ -288,5 +294,21 @@ public class Language {
 
     public void setShop(String shop) {
         this.shop = shop;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    public String getSave() {
+        return save;
+    }
+
+    public void setSave(String save) {
+        this.save = save;
     }
 }

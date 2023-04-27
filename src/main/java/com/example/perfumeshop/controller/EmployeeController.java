@@ -94,7 +94,7 @@ public class EmployeeController implements Initializable {
         addButton.setOnAction(e -> {
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == AddProductController.class) {
-                    return new AddProductController(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, idShop);
+                    return new AddProductController(language, productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, idShop);
                 } else {
                     try {
                         return type.newInstance();
@@ -122,7 +122,7 @@ public class EmployeeController implements Initializable {
             }
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == AddProductController.class) {
-                    return new AddProductController(product, productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, idShop);
+                    return new AddProductController(language, product, productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, idShop);
                 } else {
                     try {
                         return type.newInstance();

@@ -8,16 +8,17 @@ import com.example.perfumeshop.model.persistence.EmployeePersistence;
 import com.example.perfumeshop.model.persistence.PersonPersistence;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.*;
 
 public class LogInController extends Observable implements Initializable {
+    @FXML
+    public Label usernameLabel;
+    @FXML
+    public Label passwordLabel;
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -38,10 +39,18 @@ public class LogInController extends Observable implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initLanguageCheckBox();
         this.addObserver(languageController);
+        languageChoice.showingProperty().addListener((obs, wasShowing, isNowShowing) -> {
+            languageController.update(this, languageChoice.getValue());
+            language = languageController.getLanguage();
+            setPasswordLabel(language.getPassword());
+            setUsernameLabel(language.getUsername());
+        });
 
         signInButton.setOnAction(actionEvent -> {
             languageController.update(this, languageChoice.getValue());
             language = languageController.getLanguage();
+            setPasswordLabel(language.getPassword());
+            setUsernameLabel(language.getUsername());
             signIn();
         });
     }
@@ -141,5 +150,13 @@ public class LogInController extends Observable implements Initializable {
             languageChoice.getItems().add(language);
         }
         languageChoice.setValue(languages.get(0));
+    }
+
+    public void setUsernameLabel(String usernameLabel) {
+        this.usernameLabel.setText(usernameLabel);
+    }
+
+    public void setPasswordLabel(String passwordLabel) {
+        this.passwordLabel.setText(passwordLabel);
     }
 }

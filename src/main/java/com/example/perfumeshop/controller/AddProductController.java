@@ -1,18 +1,24 @@
 package com.example.perfumeshop.controller;
 
+import com.example.perfumeshop.model.Language;
 import com.example.perfumeshop.model.ShopProduct;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddProductController implements Initializable {
+    @FXML
+    public Label nameLabel;
+    @FXML
+    public Label brandLabel;
+    @FXML
+    public Label priceLabel;
+    @FXML
+    public Label productLabel;
     @FXML
     private TextField nameText;
     @FXML
@@ -39,9 +45,10 @@ public class AddProductController implements Initializable {
     private final boolean isEditing;
     private ShopProduct productToUpdate;
 
-    ProductController productController = new ProductController();
+    private final ProductController productController = new ProductController();
+    private Language language;
 
-    public AddProductController(TableView<ShopProduct> productTableView, ObservableList<ShopProduct> productItems,
+    public AddProductController(Language language, TableView<ShopProduct> productTableView, ObservableList<ShopProduct> productItems,
                                 TableColumn<ShopProduct, String> nameColumn, TableColumn<ShopProduct, String> brandColumn,
                                 TableColumn<ShopProduct, Boolean> availabilityColumn, TableColumn<ShopProduct, Number> priceColumn,
                                 int idShop) {
@@ -53,9 +60,10 @@ public class AddProductController implements Initializable {
         this.availabilityColumn = availabilityColumn;
         this.priceColumn = priceColumn;
         this.idShop = idShop;
+        this.language = language;
     }
 
-    public AddProductController(ShopProduct product, TableView<ShopProduct> productTableView, ObservableList<ShopProduct> productItems,
+    public AddProductController(Language language, ShopProduct product, TableView<ShopProduct> productTableView, ObservableList<ShopProduct> productItems,
                                 TableColumn<ShopProduct, String> nameColumn, TableColumn<ShopProduct, String> brandColumn,
                                 TableColumn<ShopProduct, Boolean> availabilityColumn, TableColumn<ShopProduct, Number> priceColumn,
                                 int idShop) {
@@ -68,10 +76,17 @@ public class AddProductController implements Initializable {
         this.priceColumn = priceColumn;
         this.idShop = idShop;
         this.productToUpdate = product;
+        this.language = language;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setBrandLabel(language.getBrandColumn());
+        setPriceLabel(language.getPriceColumn());
+        setNameLabel(language.getNameColumn());
+        setProductLabel(language.getProduct());
+        setSaveButton(language.getSave());
+
         if(isEditing) {
             nameText.setText(productToUpdate.getProduct().getName());
             brandText.setText(productToUpdate.getProduct().getBrand());
@@ -92,5 +107,25 @@ public class AddProductController implements Initializable {
                 Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, products);
             }
         });
+    }
+
+    public void setNameLabel(String nameLabel) {
+        this.nameLabel.setText(nameLabel);
+    }
+
+    public void setBrandLabel(String brandLabel) {
+        this.brandLabel.setText(brandLabel);
+    }
+
+    public void setPriceLabel(String priceLabel) {
+        this.priceLabel.setText(priceLabel);
+    }
+
+    public void setProductLabel(String productLabel) {
+        this.productLabel.setText(productLabel);
+    }
+
+    public void setSaveButton(String saveButton) {
+        this.saveButton.setText(saveButton);
     }
 }

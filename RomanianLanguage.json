@@ -22,6 +22,8 @@
     "username": "Nume de utilizator",
     "password": "Parola",
     "role": "Rol",
-    "shop": "Magazin"
+    "shop": "Magazin",
+    "product": "Produs",
+    "save": "Salveaza"
 }
   

@@ -22,6 +22,8 @@
     "username": "Nutzername",
     "password": "Passwort",
     "role": "Rolle",
-    "shop": "Geschäft"
+    "shop": "Geschäft",
+    "product": "Produkt",
+    "save": "Speichern"
 }
   

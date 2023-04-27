@@ -22,5 +22,7 @@
     "username": "Username",
     "password": "Password",
     "role": "Role",
-    "shop": "Shop"
+    "shop": "Shop",
+    "product": "Product",
+    "save": "Save"
 }
