@@ -63,7 +63,7 @@ public class ManagerController implements Initializable {
     private ChoiceBox<String> shopChoice;
 
     private final Language language;
-    private ProductController productController = new ProductController();
+    private final ProductController productController = new ProductController();
 
     public ManagerController(Language language) {
         this.language = language;
@@ -71,6 +71,21 @@ public class ManagerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        setFilterButton(language.getFilterButton());
+        setSortNameButton(language.getSortNameButton());
+        setSortPriceButton(language.getSortPriceButton());
+        setBrandAnalysisButton(language.getBrandAnalysisButton());
+
+        setAvailabilityColumn(language.getAvailabilityColumn());
+        setPriceColumn(language.getPriceColumn());
+        setBrandColumn(language.getBrandColumn());
+        setNameColumn(language.getNameColumn());
+
+        setSaveCSV(language.getSaveCSV());
+        setSaveJSON(language.getSaveJSON());
+        setSaveTXT(language.getSaveTXT());
+        setSaveXML(language.getSaveXML());
+
         Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn);
         initShopCheckBox(shopChoice);
 
@@ -126,5 +141,53 @@ public class ManagerController implements Initializable {
             shopChoiceBox.getItems().add(shop.getName());
         }
         shopChoiceBox.setValue(shops.get(0).getName()); // suppose there is at least one shop
+    }
+
+    public void setNameColumn(String nameColumn) {
+        this.nameColumn.setText(nameColumn);
+    }
+
+    public void setBrandColumn(String brandColumn) {
+        this.brandColumn.setText(brandColumn);
+    }
+
+    public void setAvailabilityColumn(String availabilityColumn) {
+        this.availabilityColumn.setText(availabilityColumn);
+    }
+
+    public void setPriceColumn(String priceColumn) {
+        this.priceColumn.setText(priceColumn);
+    }
+
+    public void setFilterButton(String filterButton) {
+        this.filterButton.setText(filterButton);
+    }
+
+    public void setSortNameButton(String sortNameButton) {
+        this.sortNameButton.setText(sortNameButton);
+    }
+
+    public void setSortPriceButton(String sortPriceButton) {
+        this.sortPriceButton.setText(sortPriceButton);
+    }
+
+    public void setSaveCSV(String saveCSV) {
+        this.saveCSV.setText(saveCSV);
+    }
+
+    public void setSaveJSON(String saveJSON) {
+        this.saveJSON.setText(saveJSON);
+    }
+
+    public void setSaveXML(String saveXML) {
+        this.saveXML.setText(saveXML);
+    }
+
+    public void setSaveTXT(String saveTXT) {
+        this.saveTXT.setText(saveTXT);
+    }
+
+    public void setBrandAnalysisButton(String brandAnalysisButton) {
+        this.brandAnalysisButton.setText(brandAnalysisButton);
     }
 }

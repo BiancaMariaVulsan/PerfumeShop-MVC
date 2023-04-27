@@ -7,12 +7,15 @@
     "editButton" : "Edit",
     "filterButton" : "Filter",
     "roleChoice" : ["Admin", "Manager", "Employee"],
-    "availabilityColumn": "",
+    "availabilityColumn": "Availability",
     "nameColumn": "Name",
     "brandColumn": "Brand",
     "priceColumn": "Price",
     "saveCSV": "saveCSV",
     "saveJSON": "saveJSON",
     "saveXML": "saveXML",
-    "saveTXT": "saveTXT"
+    "saveTXT": "saveTXT",
+    "sortNameButton": "sortName",
+    "sortPriceButton": "sortPrice",
+    "brandAnalysisButton": "brandAnalysis"
 }

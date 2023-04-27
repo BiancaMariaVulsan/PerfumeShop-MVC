@@ -1,6 +1,7 @@
 package com.example.perfumeshop.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import javafx.scene.control.Button;
 
 import java.util.List;
 
@@ -54,9 +55,19 @@ public class Language {
     @JsonProperty("saveTXT")
     private String saveTXT;
 
+    @JsonProperty("sortNameButton")
+    private String sortNameButton;
+
+    @JsonProperty("sortPriceButton")
+    private String sortPriceButton;
+
+    @JsonProperty("brandAnalysisButton")
+    private String brandAnalysisButton;
+
     public Language(String firstNameColumn, String lastNameColumn, String roleColumn,
                     String addButton, String deleteButton, String editButton,
-                    String filterButton, List<String> roleChoice, String availabilityColumn) {
+                    String filterButton, List<String> roleChoice, String availabilityColumn,
+                    String sortNameButton, String sortPriceButton, String brandAnalysisButton) {
         this.firstNameColumn = firstNameColumn;
         this.lastNameColumn = lastNameColumn;
         this.roleColumn = roleColumn;
@@ -66,6 +77,9 @@ public class Language {
         this.filterButton = filterButton;
         this.roleChoice = roleChoice;
         this.availabilityColumn = availabilityColumn;
+        this.sortNameButton = sortNameButton;
+        this.sortPriceButton = sortPriceButton;
+        this.brandAnalysisButton = brandAnalysisButton;
     }
 
     public Language() {
@@ -197,5 +211,27 @@ public class Language {
 
     public void setSaveTXT(String saveTXT) {
         this.saveTXT = saveTXT;
+    }
+    public String getSortNameButton() {
+        return sortNameButton;
+    }
+
+    public void setSortNameButton(String sortNameButton) {
+        this.sortNameButton = sortNameButton;
+    }
+
+    public String getSortPriceButton() {
+        return sortPriceButton;
+    }
+
+    public void setSortPriceButton(String sortPriceButton) {
+        this.sortPriceButton = sortPriceButton;
+    }
+
+    public String getBrandAnalysisButton() {
+        return this.brandAnalysisButton;
+    }
+    public void setBrandAnalysisButton(String brandAnalysisButton) {
+        this.brandAnalysisButton = brandAnalysisButton;
     }
 }

@@ -7,12 +7,16 @@
     "editButton" : "Editare",
     "filterButton" : "Filtrare",
     "roleChoice" : [ "ADMINISTRATOR", "ANGAJAT", "MANAGER" ],
+    "availabilityColumn": "Disponibilitate",
     "nameColumn": "Nume",
     "brandColumn": "Marca",
     "priceColumn": "Pret",
     "saveCSV": "salveazaCSV",
     "saveJSON": "salveazaJSON",
     "saveXML": "salveazaXML",
-    "saveTXT": "salveazaTXT"
+    "saveTXT": "salveazaTXT",
+    "sortNameButton": "SortareNume",
+    "sortPriceButton": "SortarePret",
+    "brandAnalysisButton": "DiagramaBradurilor"
 }
   
