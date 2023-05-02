@@ -41,11 +41,13 @@ public class PersonController {
     public void register() {
         String role = registerView.getRoleChoiceBox().getValue();
         Person person;
-        if(role.equals("EMPLOYEE")) {
+        if(role.equals("EMPLOYEE") || role.equals("ANGAJAT") || role.equals("MITERBEITER")) {
             person = new Employee(registerView.getFirstNameTextField().getText(),
                     registerView.getLastNameTextField().getText(), registerView.getUsernameTextField().getText(),
                     registerView.getPasswordTextField().getText(), registerView.getShopChoiceBox().getValue().getId());
         } else {
+            if(role.equals("ADMINISTRATOR"))
+                role = "ADMIN";
             person = new Person(registerView.getFirstNameTextField().getText(),
                     registerView.getLastNameTextField().getText(), Role.valueOf(role), registerView.getUsernameTextField().getText(),
                     registerView.getPasswordTextField().getText());
@@ -64,7 +66,7 @@ public class PersonController {
         PersonPersistence personPersistence = new PersonPersistence();
         EmployeePersistence employeePersistence = new EmployeePersistence();
         boolean successUpdate = false;
-        if(role.equals("EMPLOYEE")) {
+        if(role.equals("EMPLOYEE") || role.equals("ANGAJAT") || role.equals("MITERBEITER")) {
             personToUpdate = new Employee(personToUpdate.getId(), registerView.getFirstNameTextField().getText(),
                     registerView.getLastNameTextField().getText(), registerView.getUsernameTextField().getText(),
                     registerView.getPasswordTextField().getText(), registerView.getShopChoiceBox().getValue().getId());
@@ -107,7 +109,7 @@ public class PersonController {
     }
 
     public void enableShopChoiceBox(String role) {
-        if(role.equals("EMPLOYEE")) {
+        if(role.equals("EMPLOYEE") || role.equals("ANGAJAT") || role.equals("MITERBEITER")) {
             registerView.getShopChoiceBox().setDisable(false);
         } else {
             registerView.getShopChoiceBox().setDisable(true);
