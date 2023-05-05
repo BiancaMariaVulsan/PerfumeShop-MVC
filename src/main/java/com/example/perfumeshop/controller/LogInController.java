@@ -49,6 +49,8 @@ public class LogInController extends Observable implements Initializable {
         });
 
         signInButton.setOnAction(actionEvent -> {
+            languageController.read(languageChoice.getValue());
+            language = languageController.getLanguage();
             setPasswordLabel(language.getPassword());
             setUsernameLabel(language.getUsername());
             signIn();
