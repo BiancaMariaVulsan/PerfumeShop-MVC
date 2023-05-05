@@ -15,10 +15,12 @@ import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.Comparator;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class EmployeeController implements Initializable {
+public class EmployeeController implements Initializable, Observer {
 
     @FXML
     private TableView<ShopProduct> productTableView;
@@ -68,28 +70,13 @@ public class EmployeeController implements Initializable {
     private final ProductController productPresenter = new ProductController();
     private final Language language;
 
-    public EmployeeController(int isShop, Language language) {
+    public EmployeeController(Language language, int isShop) {
         this.idShop = isShop;
         this.language = language;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setAddButton(language.getAddButton());
-        setDeleteButton(language.getDeleteButton());
-        setEditButton(language.getEditButton());
-        setFilterButton(language.getFilterButton());
-        setSortByPriceButton(language.getSortPriceButton());
-        setSortByNameButton(language.getSortNameButton());
-        setAvailabilityColumn(language.getAvailabilityColumn());
-        setBrandColumn(language.getBrandColumn());
-        setNameColumn(language.getNameColumn());
-        setPriceColumn(language.getPriceColumn());
-        setSaveCSV(language.getSaveCSV());
-        setSaveJSON(language.getSaveJSON());
-        setSaveTXT(language.getSaveTXT());
-        setSaveXML(language.getSaveXML());
-
         Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn, idShop);
         addButton.setOnAction(e -> {
             Callback<Class<?>, Object> controllerFactory = type -> {
@@ -217,5 +204,23 @@ public class EmployeeController implements Initializable {
 
     public void setSortByPriceButton(String sortByPriceButton) {
         this.sortByPriceButton.setText(sortByPriceButton);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        setAddButton(((Language) arg).getAddButton());
+        setDeleteButton(((Language) arg).getDeleteButton());
+        setEditButton(((Language) arg).getEditButton());
+        setFilterButton(((Language) arg).getFilterButton());
+        setSortByPriceButton(((Language) arg).getSortPriceButton());
+        setSortByNameButton(((Language) arg).getSortNameButton());
+        setAvailabilityColumn(((Language) arg).getAvailabilityColumn());
+        setBrandColumn(((Language) arg).getBrandColumn());
+        setNameColumn(((Language) arg).getNameColumn());
+        setPriceColumn(((Language) arg).getPriceColumn());
+        setSaveCSV(((Language) arg).getSaveCSV());
+        setSaveJSON(((Language) arg).getSaveJSON());
+        setSaveTXT(((Language) arg).getSaveTXT());
+        setSaveXML(((Language) arg).getSaveXML());
     }
 }

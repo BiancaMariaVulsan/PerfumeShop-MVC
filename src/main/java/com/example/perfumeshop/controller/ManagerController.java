@@ -16,11 +16,9 @@ import javafx.scene.control.*;
 import javafx.util.Callback;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
-public class ManagerController implements Initializable {
+public class ManagerController implements Initializable, Observer {
     @FXML
     private TableView<Product> productTableView;
     private final ObservableList<Product> productItems = FXCollections.observableArrayList();
@@ -74,22 +72,6 @@ public class ManagerController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setFilterButton(language.getFilterButton());
-        setSortNameButton(language.getSortNameButton());
-        setSortPriceButton(language.getSortPriceButton());
-        setBrandAnalysisButton(language.getBrandAnalysisButton());
-        setPriceAnalysisButton(language.getPriceAnalysisButton());
-
-        setAvailabilityColumn(language.getAvailabilityColumn());
-        setPriceColumn(language.getPriceColumn());
-        setBrandColumn(language.getBrandColumn());
-        setNameColumn(language.getNameColumn());
-
-        setSaveCSV(language.getSaveCSV());
-        setSaveJSON(language.getSaveJSON());
-        setSaveTXT(language.getSaveTXT());
-        setSaveXML(language.getSaveXML());
-
         Controller.populateTableProducts(productTableView, productItems, nameColumn, brandColumn, availabilityColumn, priceColumn);
         initShopCheckBox(shopChoice);
 
@@ -221,5 +203,24 @@ public class ManagerController implements Initializable {
 
     public void setPriceAnalysisButton(String priceAnalysisButton) {
         this.priceAnalysisButton.setText(priceAnalysisButton);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        setFilterButton(((Language) arg).getFilterButton());
+        setSortNameButton(((Language) arg).getSortNameButton());
+        setSortPriceButton(((Language) arg).getSortPriceButton());
+        setBrandAnalysisButton(((Language) arg).getBrandAnalysisButton());
+        setPriceAnalysisButton(((Language) arg).getPriceAnalysisButton());
+
+        setAvailabilityColumn(((Language) arg).getAvailabilityColumn());
+        setPriceColumn(((Language) arg).getPriceColumn());
+        setBrandColumn(((Language) arg).getBrandColumn());
+        setNameColumn(((Language) arg).getNameColumn());
+
+        setSaveCSV(((Language) arg).getSaveCSV());
+        setSaveJSON(((Language) arg).getSaveJSON());
+        setSaveTXT(((Language) arg).getSaveTXT());
+        setSaveXML(((Language) arg).getSaveXML());
     }
 }

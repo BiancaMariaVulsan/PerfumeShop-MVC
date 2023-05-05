@@ -94,9 +94,11 @@ public class LogInController extends Observable implements Initializable {
             Controller.loadFXML("/com/example/perfumeshop/admin-view.fxml", controllerFactory);
 
         } else if (person.getRole().equals(Role.MANAGER)) {
+            ManagerController managerController = new ManagerController(language);
+            this.addObserver(managerController);
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == ManagerController.class) {
-                    return new ManagerController(language);
+                    return managerController;
                 } else {
                     try {
                         return type.newInstance();
@@ -108,9 +110,11 @@ public class LogInController extends Observable implements Initializable {
             };
             Controller.loadFXML("/com/example/perfumeshop/manager-view.fxml", controllerFactory);
         } else {
+            EmployeeController employeeController = new EmployeeController(language, getShopId(username));
+            this.addObserver(employeeController);
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == com.example.perfumeshop.controller.EmployeeController.class) {
-                    return new com.example.perfumeshop.controller.EmployeeController(getShopId(username), language);
+                    return employeeController;
                 } else {
                     try {
                         return type.newInstance();
