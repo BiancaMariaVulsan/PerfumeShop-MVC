@@ -7,12 +7,11 @@ import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 
-public class LanguageController implements Observer {
+public class LanguageController {
     private final LanguagePersistence languagePersistence = new LanguagePersistence();
     private Language language;
 
-    @Override
-    public void update(Observable o, Object arg) {
+    public void read(String arg) {
         try {
             if(arg.equals("English")) {
                 language = languagePersistence.read("EnglishLanguage.json");

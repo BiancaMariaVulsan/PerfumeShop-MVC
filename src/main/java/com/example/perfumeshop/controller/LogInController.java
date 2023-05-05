@@ -38,20 +38,22 @@ public class LogInController extends Observable implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initLanguageCheckBox();
-        this.addObserver(languageController);
+
         languageChoice.showingProperty().addListener((obs, wasShowing, isNowShowing) -> {
-            languageController.update(this, languageChoice.getValue());
+            languageController.read(languageChoice.getValue());
             language = languageController.getLanguage();
+            setChanged();
+            this.notifyObservers(language);
             setPasswordLabel(language.getPassword());
             setUsernameLabel(language.getUsername());
         });
 
         signInButton.setOnAction(actionEvent -> {
-            languageController.update(this, languageChoice.getValue());
-            language = languageController.getLanguage();
             setPasswordLabel(language.getPassword());
             setUsernameLabel(language.getUsername());
             signIn();
+            setChanged();
+            this.notifyObservers(language);
         });
     }
 
@@ -75,9 +77,11 @@ public class LogInController extends Observable implements Initializable {
             return;
         }
         if (person.getRole().equals(Role.ADMIN)) {
+            AdminController adminController = new AdminController();
+            this.addObserver(adminController);
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == AdminController.class) {
-                    return new AdminController(language);
+                    return adminController;
                 } else {
                     try {
                         return type.newInstance();
@@ -88,6 +92,7 @@ public class LogInController extends Observable implements Initializable {
                 }
             };
             Controller.loadFXML("/com/example/perfumeshop/admin-view.fxml", controllerFactory);
+
         } else if (person.getRole().equals(Role.MANAGER)) {
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == ManagerController.class) {

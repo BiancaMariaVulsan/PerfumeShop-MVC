@@ -128,7 +128,6 @@ public class ProductController {
             Controller.initAlarmBox("Warning", "Please select the product to be deleted!", Alert.AlertType.WARNING);
         } else {
             try {
-//            productPersistence.delete(product);
                 productPersistence.deleteProductFromShop(shopId, product.getId());
                 productsMap = getProductsMap();
             } catch (Exception e) {
@@ -142,7 +141,6 @@ public class ProductController {
         try {
             int newStock = Integer.parseInt(stock.getText());
             productPersistence.updateStockOfProduct(shopId, productToUpdate.getId(), newStock);
-//            productsMap = getProductsMap();
             for(ShopProduct shopP: productsMap.get(shopId)) {
                 if(shopP.getProduct().getId() == productToUpdate.getId()) {
                     shopP.setStock(Integer.parseInt(stock.getText()));

@@ -12,9 +12,11 @@ import javafx.util.Callback;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class AdminController implements Initializable {
+public class AdminController implements Initializable, Observer {
     @FXML
     private TableView<Person> personTableView;
     private final ObservableList<Person> personItems = FXCollections.observableArrayList();
@@ -35,27 +37,16 @@ public class AdminController implements Initializable {
     private Button filterButton;
     @FXML
     private ChoiceBox<String> roleChoice;
-    private final Language language;
 
-    public AdminController(Language language) {
-        this.language = language;
-    }
+    public AdminController() {}
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setAddButton(language.getAddButton());
-        setDeleteButton(language.getDeleteButton());
-        setEditButton(language.getEditButton());
-        setFilterButton(language.getFilterButton());
-        setFirstNameColumn(language.getFirstNameColumn());
-        setLastNameColumn(language.getLastNameColumn());
-        setRoleChoice(language.getRoleChoice());
-
         Controller.populateTablePersons(personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
         addButton.setOnAction(e -> {
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == RegisterController.class) {
-                    return new RegisterController(language, personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
+                    return new AdminController();//RegisterController(personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
                 } else {
                     try {
                         return type.newInstance();
@@ -87,7 +78,7 @@ public class AdminController implements Initializable {
             }
             Callback<Class<?>, Object> controllerFactory = type -> {
                 if (type == RegisterController.class) {
-                    return new RegisterController(language, item, personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
+                    return new AdminController();// RegisterController(item, personTableView, personItems, firstNameColumn, lastNameColumn, roleColumn);
                 } else {
                     try {
                         return type.newInstance();
@@ -158,5 +149,16 @@ public class AdminController implements Initializable {
     public void setRoleChoice(List<String> roleChoice) {
         ObservableList<String> items = FXCollections.observableArrayList(roleChoice);
         this.roleChoice.setItems(items);
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        setAddButton(((Language) arg).getAddButton());
+        setDeleteButton(((Language) arg).getDeleteButton());
+        setEditButton(((Language) arg).getEditButton());
+        setFilterButton(((Language) arg).getFilterButton());
+        setFirstNameColumn(((Language) arg).getFirstNameColumn());
+        setLastNameColumn(((Language) arg).getLastNameColumn());
+        setRoleChoice(((Language) arg).getRoleChoice());
     }
 }
